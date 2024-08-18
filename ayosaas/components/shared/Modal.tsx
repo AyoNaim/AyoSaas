@@ -1,25 +1,37 @@
 'use client'
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
-import { navLinks } from '@/constants'
-import { usePathname } from 'next/navigation'
-import { Button } from '../ui/button'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import Image from "next/image"
+import Link from "next/link"
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+import { navLinks } from "@/constants"
+import { usePathname } from "next/navigation"
 
-const Sidebar = () => {
-  const pathname = usePathname();
+export function Modal() {
+    const pathname = usePathname();
   return (
-    <aside className='sidebar'>
-      <div className='flex size-full flex-col gap-4'>
-        <Link href={'./'}>
-          <Image src={'/logo-text.svg'} alt='logo' width={180} height={28} />
-        </Link>
-        <nav className='sidebar-nav'>
-          <SignedIn>
+    <Sheet>
+      <SheetTrigger asChild>
+        <img src={'/menu.svg'} alt="menu" />
+      </SheetTrigger>
+      <SheetContent className="sheet-content sm:w-64">
+        <div>
+            <img src="logo-text.svg" alt="logo" />
+            <SignedIn>
             <ul className='sidebar-nav-elements'>
               {
-                navLinks.slice(0, 6).map((item) => {
+                navLinks.map((item) => {
                   const isActive = item.route === pathname
                   return (
                     <Link href={item.route} className={`sidebar-nav_element group ${
@@ -36,7 +48,7 @@ const Sidebar = () => {
             </ul>
           </SignedIn>
           <SignedIn>
-            <li className='flex justify-start cursor-pointer gap-2 p-4 bottom-0 left-0'>
+            <li className='flex justify-start items-end cursor-pointer gap-2 p-4 bottom-0 left-0 right-full top-full'>
               <UserButton afterSignOutUrl='/' showName />
             </li>
           </SignedIn>
@@ -45,10 +57,8 @@ const Sidebar = () => {
               <Link href={'/sign-in'}>Log in</Link>
             </Button>
           </SignedOut>
-        </nav>
-      </div>
-    </aside>
+          </div>
+      </SheetContent>
+    </Sheet>
   )
 }
-
-export default Sidebar
