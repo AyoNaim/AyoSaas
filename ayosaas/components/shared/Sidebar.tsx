@@ -22,7 +22,7 @@ const Sidebar = () => {
                 navLinks.slice(0, 6).map((item) => {
                   const isActive = item.route === pathname
                   return (
-                    <Link href={item.route} className={`sidebar-nav_element group ${
+                    <Link key={item.label} href={item.route} className={`sidebar-nav_element group ${
                       isActive ? 'bg-purple-gradient text-white' : 'text-gray-700'
                     }`}>
                       <Link href={'./'} className='sidebar-link'>

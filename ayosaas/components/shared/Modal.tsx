@@ -23,18 +23,19 @@ export function Modal() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <img src={'/menu.svg'} alt="menu" />
+        <Image src={'/menu.svg'} alt="menu" width={30} height={30} />
       </SheetTrigger>
       <SheetContent className="sheet-content sm:w-64">
         <div>
-            <img src="logo-text.svg" alt="logo" />
+            <Image src="logo-text.svg" alt="logo" width={20} height={20} />
             <SignedIn>
             <ul className='sidebar-nav-elements'>
               {
                 navLinks.map((item) => {
                   const isActive = item.route === pathname
                   return (
-                    <Link href={item.route} className={`sidebar-nav_element group ${
+                    <Link key={item.label} h
+                    ref={item.route} className={`sidebar-nav_element group ${
                       isActive ? 'bg-purple-gradient text-white' : 'text-gray-700'
                     }`}>
                       <Link href={'./'} className='sidebar-link'>
