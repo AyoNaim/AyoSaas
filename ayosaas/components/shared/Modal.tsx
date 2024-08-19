@@ -39,7 +39,7 @@ export function Modal() {
                     }`}>
                       <Link href={item.route} className='sidebar-link'>
                         <Image src={item.icon} alt='logo' width={20} height={20} className={ `${isActive && 'brightness-200'}` }/>
-                        {item.label}
+                        <p>{item.label}</p>
                       </Link>
                     </li>
                   )
